@@ -16,31 +16,31 @@
 ## 4. get the value of the inverse of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-  #initialize the inverse as NULL to begin
-  inverse <- NULL
-  
-  #given value y, set overwrites x with y, and resets inverse to NULL.
-  set <- function(y) {
-    x <<- y
-    inverse <<- NULL
-  }
-  
-  #get returns x unchanged
-  get <- function() x
-  
-  #a function to store the inverse of the matrix on our special 'matrix'
-  setinverse <- function(inverse_in) inverse <<- inverse_in
-  
-  #getinverse simply returns inverse unchanged
-  getinverse <- function() inverse
-  
-  #returns a 'matrix' (list with 4 named entries)
-  list(
-    set = set,
-    get = get,
-    setinverse = setinverse,
-    getinverse = getinverse
-  )
+    #initialize the inverse as NULL to begin
+    inverse <- NULL
+    
+    #given value y, set overwrites x with y, and resets inverse to NULL.
+    set <- function(y) {
+        x <<- y
+        inverse <<- NULL
+    }
+    
+    #get returns x unchanged
+    get <- function() x
+    
+    #a function to store the inverse of the matrix on our special 'matrix'
+    setinverse <- function(inverse_in) inverse <<- inverse_in
+    
+    #getinverse simply returns inverse unchanged
+    getinverse <- function() inverse
+    
+    #returns a 'matrix' (list with 4 named entries)
+    list(
+        set = set,
+        get = get,
+        setinverse = setinverse,
+        getinverse = getinverse
+    )
 }
 
 
@@ -53,14 +53,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## and sets the value in the cache via the setinverse function.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  existing <- x$getinverse()
-  if(!is.null(existing)) {
-    message("using cached data...")
-    return(existing)
-  }
-  m <- x$get()
-  inverse <- solve(m)
-  x$setinverse(inverse)
-  inverse
+    ## Return a matrix that is the inverse of 'x'
+    existing <- x$getinverse()
+    if(!is.null(existing)) {
+        message("using cached data...")
+        return(existing)
+    }
+    m <- x$get()
+    inverse <- solve(m)
+    x$setinverse(inverse)
+    inverse
 }
